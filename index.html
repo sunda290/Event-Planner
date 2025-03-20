@@ -3,151 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Evento - Igreja</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-        }
-        h2 {
-            text-align: center;
-        }
-        form {
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px #ccc;
-        }
-        label {
-            font-weight: bold;
-            display: block;
-            margin-top: 10px;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-        button {
-            background: #28a745;
-            color: white;
-            padding: 10px;
-            border: none;
-            margin-top: 15px;
-            cursor: pointer;
-            width: 100%;
-        }
-        button:hover {
-            background: #218838;
-        }
-        .resultado {
-            margin-top: 20px;
-            font-weight: bold;
-            text-align: center;
-            color: #333;
-        }
-    </style>
+    <title>Event Planner</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <h2>Cadastro de Evento da Igreja</h2>
-    <form id="eventoForm">
-        <!-- Identificação do Evento -->
-        <label for="nomeEvento">Nome do Evento:</label>
-        <input type="text" id="nomeEvento" required>
+    <div class="container">
+        <header>
+            <div class="logo">Joy</div>
+            <h1>Event Planner</h1>
+        </header>
 
-        <label for="organizador">Organizador:</label>
-        <input type="text" id="organizador" required>
+        <section class="section">
+            <h2>📅 Identificação do Evento</h2>
+            <label>Event Title</label>
+            <input type="text" id="eventTitle">
 
-        <label for="dataEvento">Data e Hora:</label>
-        <input type="datetime-local" id="dataEvento" required>
+            <label>Event Organizer</label>
+            <input type="text" id="organizer">
 
-        <!-- Propósito do Evento -->
-        <label for="proposito">Propósito do Evento:</label>
-        <select id="proposito" multiple>
-            <option value="Culto">Culto</option>
-            <option value="Evangelismo">Evangelismo</option>
-            <option value="Arrecadação">Arrecadação</option>
-            <option value="Outro">Outro (Especifique abaixo)</option>
-        </select>
+            <label>Event Start Date & Time</label>
+            <input type="datetime-local" id="eventDate">
+        </section>
 
-        <label for="propositoOutro">Outro Propósito:</label>
-        <input type="text" id="propositoOutro" placeholder="Descreva se necessário">
+        <section class="section">
+            <h2>📋 Purpose of Event</h2>
+            <p>Mark ALL that apply - Add other options if needed</p>
+            <div class="checkbox-group">
+                <label><input type="checkbox"> Fundraising event - Raise funds for church improvements (e.g., repairs, renovations, equipment, etc.)</label>
+                <label><input type="checkbox"> Fundraising event - Raise funds for other event (e.g., cantina/bazaar, where funds will support a different event)</label>
+                <label><input type="checkbox"> Fundraising event - Support local and international missions</label>
+                <label><input type="checkbox"> Fundraising event - Assist church members or community members in need (e.g., financial assistance, food)</label>
+                <label><input type="checkbox"> Increase the church's visibility within the Portuguese-speaking community and attract new members</label>
+                <label><input type="checkbox"> Strengthen fellowship and engagement among church members</label>
+                <label><input type="checkbox"> Celebrate special occasions or Christian holidays (e.g., Easter, Christmas, Thanksgiving, Church Anniversary)</label>
+                <label><input type="checkbox"> Support specific church ministries (e.g., children’s ministry, worship team, youth, women)</label>
+                <label><input type="checkbox"> Conduct charity activities in the community (e.g., food distribution, clothing drives, supporting the homeless)</label>
+                <label><input type="checkbox"> Encourage children, youth and teens to engage in church activities</label>
+                <label><input type="checkbox"> Host cultural or sports activities to strengthen community bonds</label>
+                <label><input type="checkbox"> Host educational or spiritual events (e.g., lectures, workshops, Bible conferences)</label>
+                <input type="text" placeholder="Other purpose">
+            </div>
+        </section>
+        
 
-        <!-- Fontes de Arrecadação -->
-        <label for="arrecadacao">Fonte de Arrecadação:</label>
-        <select id="arrecadacao">
-            <option value="Bazares">Bazares</option>
-            <option value="Rifas">Rifas</option>
-            <option value="Taxas">Taxas de Participação</option>
-            <option value="Outro">Outro (Especifique abaixo)</option>
-        </select>
+        <section class="section">
+            <h2>💰 Funds for Event - <span style="color: darkgreen;">Excluding JOY Financial Funds</span></h2>
+            <p>Select all that apply - Add more options in blank rows if needed</p>
+        
+            <table>
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Fundraising Source</th>
+                        <th>Additional Info (if needed)</th>
+                        <th>Type</th>
+                        <th>Estimate Values (R$)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" class="fund-checkbox"></td>
+                        <td>A fundraising activity (bazaar/cantina) will be held to generate financial support</td>
+                        <td><input type="text" class="fund-info"></td>
+                        <td>Income</td>
+                        <td><input type="number" class="fund-value" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="fund-checkbox"></td>
+                        <td>Entry or participation fees will be collected from attendees to help cover event costs</td>
+                        <td><input type="text" class="fund-info"></td>
+                        <td>Income</td>
+                        <td><input type="number" class="fund-value" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="fund-checkbox"></td>
+                        <td>Other items (e.g., handmade products, merchandise) will be sold to raise funds</td>
+                        <td><input type="text" class="fund-info"></td>
+                        <td>Income</td>
+                        <td><input type="number" class="fund-value" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="fund-checkbox"></td>
+                        <td>Members and supporters will be encouraged to contribute to the event</td>
+                        <td><input type="text" class="fund-info"></td>
+                        <td>Income</td>
+                        <td><input type="number" class="fund-value" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="fund-checkbox"></td>
+                        <td>Raffles or auctions with donated prizes will be organized to encourage contributions</td>
+                        <td><input type="text" class="fund-info"></td>
+                        <td>Income</td>
+                        <td><input type="number" class="fund-value" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="fund-checkbox"></td>
+                        <td>Workshops, classes, and ticketed activities will be held to support the event</td>
+                        <td><input type="text" class="fund-info"></td>
+                        <td>Income</td>
+                        <td><input type="number" class="fund-value" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="fund-checkbox"></td>
+                        <td>Paid services (e.g., car wash, cleaning, tutoring) will be offered to raise funds</td>
+                        <td><input type="text" class="fund-info"></td>
+                        <td>Income</td>
+                        <td><input type="number" class="fund-value" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="fund-checkbox"></td>
+                        <td>Local businesses may be invited to support the event through sponsorship</td>
+                        <td><input type="text" class="fund-info"></td>
+                        <td>Income</td>
+                        <td><input type="number" class="fund-value" value="0"></td>
+                    </tr>
+                    <!-- Linhas extras para que o usuário possa adicionar novas fontes -->
+                    <tr>
+                        <td><input type="checkbox" class="fund-checkbox"></td>
+                        <td><input type="text" placeholder="Enter new fundraising source"></td>
+                        <td><input type="text" class="fund-info"></td>
+                        <td>Income</td>
+                        <td><input type="number" class="fund-value" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="fund-checkbox"></td>
+                        <td><input type="text" placeholder="Enter new fundraising source"></td>
+                        <td><input type="text" class="fund-info"></td>
+                        <td>Income</td>
+                        <td><input type="number" class="fund-value" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="fund-checkbox"></td>
+                        <td><input type="text" placeholder="Enter new fundraising source"></td>
+                        <td><input type="text" class="fund-info"></td>
+                        <td>Income</td>
+                        <td><input type="number" class="fund-value" value="0"></td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <p style="color: red; font-style: italic;">* All e-transfers must clearly indicate the deposit purpose in the message/details field</p>
+        
+            <div class="total-summary">
+                Total Estimated Income for Event: <span id="totalIncomeDisplay">R$ 0.00</span>
+            </div>
+            <button onclick="calculateTotalIncome()">Calculate Total Income</button>
+        </section>
 
-        <label for="valorArrecadado">Valor Estimado da Arrecadação (R$):</label>
-        <input type="number" id="valorArrecadado" required>
+        <section class="section">
+            <h2>💸 Expenses - <span style="color: darkgreen;">Add additional options in blank rows if needed</span></h2>
+        
+            <table id="expensesTable">
+                <thead>
+                    <tr>
+                        <th>Expense Description</th>
+                        <th>Additional Info (if needed)</th>
+                        <th>Type</th>
+                        <th>Estimate Values (R$)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>🏠 Total Event Expenses (Lump Sum) OR Itemized Breakdown Below:</strong></td>
+                        <td></td>
+                        <td>Expense</td>
+                        <td><input type="number" id="lumpSumExpense" class="expense-value" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" placeholder="Enter expense name"></td>
+                        <td><input type="text" class="expense-info"></td>
+                        <td>Expense</td>
+                        <td><input type="number" class="expense-value" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" placeholder="Enter expense name"></td>
+                        <td><input type="text" class="expense-info"></td>
+                        <td>Expense</td>
+                        <td><input type="number" class="expense-value" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" placeholder="Enter expense name"></td>
+                        <td><input type="text" class="expense-info"></td>
+                        <td>Expense</td>
+                        <td><input type="number" class="expense-value" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" placeholder="Enter expense name"></td>
+                        <td><input type="text" class="expense-info"></td>
+                        <td>Expense</td>
+                        <td><input type="number" class="expense-value" value="0"></td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <!-- Total Estimated Event Expenses -->
+            <div class="total-summary">
+                Total Estimated Event Expenses: <span id="totalExpensesDisplay">R$ 0.00</span>
+            </div>
+            <!-- Net Profit / (Loss) -->
+            <div class="total-summary" style="color: darkgreen;">
+                Net Profit / (Loss): <span id="netProfitLossDisplay">R$ 0.00</span>
+            </div>
+        
+            <button onclick="calculateTotalExpenses()">Calculate Expenses & Profit</button>
+        </section>
 
-        <!-- Despesas -->
-        <label for="despesas">Total de Despesas (R$):</label>
-        <input type="number" id="despesas" required>
+        <section class="section">
+            <h2>🏛 Estimated Event Costs Covered by the Church</h2>
+        
+            <table id="churchFundsTable">
+                <thead>
+                    <tr>
+                        <th>Covered Expense</th>
+                        <th>Additional Info (if needed)</th>
+                        <th>Type</th>
+                        <th>Estimate Values (R$)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>💰 Uncovered expenses eligible for reimbursement</td>
+                        <td><input type="text" class="church-funds-info"></td>
+                        <td>Joy Funds</td>
+                        <td><input type="number" class="church-funds-value" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>🏦 Uncovered expenses to be paid directly by Joy Church</td>
+                        <td><input type="text" class="church-funds-info"></td>
+                        <td>Joy Funds</td>
+                        <td><input type="number" class="church-funds-value" value="0"></td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <div class="total-summary">
+                Total Estimated Amount - Church Financial Funds: <span id="totalChurchFundsDisplay">R$ 0.00</span>
+            </div>
+        
+            <div class="total-summary" style="color: darkgreen;">
+                The balance MUST be ZERO or POSITIVE (No Deficit Allowed): <span id="finalBalanceDisplay">R$ 0.00</span>
+            </div>
+        
+            <button onclick="calculateChurchFunds()">Calculate Church Funds & Balance</button>
+        </section>
+        
+        <section class="section">
+            <h2>✅ Approvals</h2>
+        
+            <table id="approvalsTable">
+                <thead>
+                    <tr>
+                        <th>Select all that apply</th>
+                        <th>Specify the approver's name or committee</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" class="approval-checkbox"> Event and related expenses have been approved by</td>
+                        <td><input type="text" class="approval-info" placeholder="Enter approver's name"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="approval-checkbox"> Reimbursement request from church funds has been approved by</td>
+                        <td><input type="text" class="approval-info" placeholder="Enter approver's name"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="approval-checkbox"> Direct payment of expenses from church funds has been approved by</td>
+                        <td><input type="text" class="approval-info" placeholder="Enter approver's name"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
 
-        <!-- Financiamento -->
-        <label for="financiamento">A Igreja Cobrira Parte das Despesas?</label>
-        <select id="financiamento">
-            <option value="Sim">Sim</option>
-            <option value="Não">Não</option>
-        </select>
+        <button onclick="calculateProfit()">Calculate Profit</button>
+    </div>
 
-        <!-- Aprovação -->
-        <label for="aprovador">Responsável pela Aprovação:</label>
-        <input type="text" id="aprovador" required>
-
-        <button type="button" onclick="calcularEvento()">Registrar Evento</button>
-
-        <div class="resultado" id="resultado"></div>
-    </form>
-
-    <script>
-        function calcularEvento() {
-            let nomeEvento = document.getElementById("nomeEvento").value;
-            let organizador = document.getElementById("organizador").value;
-            let dataEvento = document.getElementById("dataEvento").value;
-            let arrecadacao = parseFloat(document.getElementById("valorArrecadado").value);
-            let despesas = parseFloat(document.getElementById("despesas").value);
-            let financiamento = document.getElementById("financiamento").value;
-            let aprovador = document.getElementById("aprovador").value;
-
-            if (!nomeEvento || !organizador || !dataEvento || isNaN(arrecadacao) || isNaN(despesas) || !aprovador) {
-                document.getElementById("resultado").innerHTML = "⚠️ Preencha todos os campos obrigatórios!";
-                return;
-            }
-
-            let saldo = arrecadacao - despesas;
-            let status = saldo >= 0 ? "✅ O evento é financeiramente viável." : "❌ O evento tem um déficit de R$ " + Math.abs(saldo).toFixed(2);
-
-            if (saldo < 0 && financiamento === "Não") {
-                status += "<br>🚨 A igreja não cobrirá o déficit!";
-            } else if (saldo < 0 && financiamento === "Sim") {
-                status += "<br>✅ A igreja pode cobrir os custos!";
-            }
-
-            document.getElementById("resultado").innerHTML = `
-                <strong>Evento Registrado:</strong><br>
-                📌 Nome: ${nomeEvento} <br>
-                📅 Data: ${dataEvento} <br>
-                🏆 Organizador: ${organizador} <br>
-                💰 Arrecadação: R$ ${arrecadacao.toFixed(2)} <br>
-                💸 Despesas: R$ ${despesas.toFixed(2)} <br>
-                🏦 Financiamento: ${financiamento} <br>
-                ✅ Aprovador: ${aprovador} <br>
-                🔎 Status: ${status}
-            `;
-        }
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
