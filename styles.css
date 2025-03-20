@@ -1,3 +1,4 @@
+/* Reset básico */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -5,8 +6,9 @@ body {
     padding: 20px;
 }
 
+/* Container principal */
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: auto;
     background: white;
     padding: 20px;
@@ -14,6 +16,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Cabeçalho */
 header {
     background: #2c8f5d;
     padding: 20px;
@@ -37,6 +40,7 @@ h1 {
     font-size: 22px;
 }
 
+/* Seções */
 .section {
     margin: 20px 0;
     padding: 20px;
@@ -49,8 +53,8 @@ h2 {
     margin-bottom: 10px;
 }
 
+/* Inputs e Labels */
 label {
-    /* font-weight: bold; */
     display: block;
     margin-top: 10px;
 }
@@ -65,10 +69,16 @@ input[type="datetime-local"] {
     border: 1px solid #ccc;
 }
 
+/* Melhorando a exibição dos checkboxes */
 .checkbox-group {
     display: flex;
     flex-direction: column;
     gap: 5px;
+}
+
+/* Tabelas Responsivas */
+.table-responsive {
+    overflow-x: auto;
 }
 
 table {
@@ -82,6 +92,7 @@ th, td {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: left;
+    white-space: nowrap; /* Evita quebra de linha nos títulos */
 }
 
 th {
@@ -96,6 +107,7 @@ td input[type="text"], td input[type="number"] {
     border-radius: 4px;
 }
 
+/* Botões */
 button {
     background: #2c8f5d;
     color: white;
@@ -105,12 +117,15 @@ button {
     width: 100%;
     margin-top: 20px;
     font-size: 16px;
+    border-radius: 5px;
+    transition: background 0.3s;
 }
 
 button:hover {
     background: #237a4d;
 }
 
+/* Resumo de totais */
 h3 {
     text-align: center;
     color: #d32f2f;
@@ -122,4 +137,33 @@ h3 {
     font-size: 18px;
     margin-top: 10px;
     margin-right: 20px;
+}
+
+/* Ajuste para telas menores */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .checkbox-group {
+        flex-direction: column;
+    }
+
+    th, td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    button {
+        font-size: 14px;
+    }
 }

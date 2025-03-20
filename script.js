@@ -1,93 +1,82 @@
-function calculateProfit() {
-    let income = parseFloat(document.getElementById("totalIncome").value) || 0;
-    let expenses = parseFloat(document.getElementById("totalExpenses").value) || 0;
-    
-    let netProfit = income - expenses;
-    let resultText = `R$ ${netProfit.toFixed(2)}`;
-
-    let resultElement = document.getElementById("netProfit");
-    resultElement.innerHTML = resultText;
-
-    if (netProfit < 0) {
-        resultElement.style.color = "red";
-    } else {
-        resultElement.style.color = "green";
-    }
+// Função auxiliar para converter valores corretamente
+function parseCurrency(value) {
+    return parseFloat(value) || 0;
 }
 
+// Calcula o lucro líquido (Total Income - Total Expenses)
+function calculateProfit() {
+    let income = parseCurrency(document.getElementById("totalIncomeDisplay").innerText.replace("R$", ""));
+    let expenses = parseCurrency(document.getElementById("totalExpensesDisplay").innerText.replace("R$", ""));
+
+    let netProfit = income - expenses;
+    let resultElement = document.getElementById("netProfitLossDisplay");
+
+    resultElement.innerText = `R$ ${netProfit.toFixed(2)}`;
+    resultElement.style.color = netProfit < 0 ? "red" : "green";
+}
+
+// Calcula automaticamente o total arrecadado (Funds for Event)
 function calculateTotalIncome() {
     let total = 0;
-    
-    // Percorrer todas as linhas da tabela
-    let checkboxes = document.querySelectorAll(".fund-checkbox");
-    let values = document.querySelectorAll(".fund-value");
 
-    for (let i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked) {
-            total += parseFloat(values[i].value) || 0;
+    document.querySelectorAll(".fund-checkbox").forEach((checkbox, index) => {
+        if (checkbox.checked) {
+            let value = parseCurrency(document.querySelectorAll(".fund-value")[index].value);
+            total += value;
         }
-    }
+    });
 
-    // Atualizar a exibição do total
-    document.getElementById("totalIncomeDisplay").innerHTML = `R$ ${total.toFixed(2)}`;
+    document.getElementById("totalIncomeDisplay").innerText = `R$ ${total.toFixed(2)}`;
+    
+    // Atualiza automaticamente o cálculo do lucro/prejuízo
+    calculateProfit();
 }
 
+// Calcula automaticamente o total de despesas
 function calculateTotalExpenses() {
     let totalExpenses = 0;
-    
-    // Somar todas as despesas da tabela
-    let expenseValues = document.querySelectorAll(".expense-value");
 
-    for (let i = 0; i < expenseValues.length; i++) {
-        totalExpenses += parseFloat(expenseValues[i].value) || 0;
-    }
+    document.querySelectorAll(".expense-value").forEach(expense => {
+        totalExpenses += parseCurrency(expense.value);
+    });
 
-    // Atualizar o total de despesas na tela
-    document.getElementById("totalExpensesDisplay").innerHTML = `R$ ${totalExpenses.toFixed(2)}`;
+    document.getElementById("totalExpensesDisplay").innerText = `R$ ${totalExpenses.toFixed(2)}`;
 
-    // Recuperar o total arrecadado do evento
-    let totalIncomeText = document.getElementById("totalIncomeDisplay").innerText;
-    let totalIncome = parseFloat(totalIncomeText.replace("R$", "").trim()) || 0;
-
-    // Calcular lucro/prejuízo
-    let netProfitLoss = totalIncome - totalExpenses;
-    let netProfitLossDisplay = document.getElementById("netProfitLossDisplay");
-    netProfitLossDisplay.innerHTML = `R$ ${netProfitLoss.toFixed(2)}`;
-
-    // Mudar cor dependendo se é lucro ou prejuízo
-    if (netProfitLoss < 0) {
-        netProfitLossDisplay.style.color = "red";
-    } else {
-        netProfitLossDisplay.style.color = "green";
-    }
+    // Atualiza automaticamente o cálculo do lucro/prejuízo
+    calculateProfit();
 }
 
+// Calcula automaticamente os custos cobertos pela igreja e o saldo final
 function calculateChurchFunds() {
     let totalChurchFunds = 0;
-    
-    // Somar todas as despesas cobertas pela igreja
-    let churchFundValues = document.querySelectorAll(".church-funds-value");
 
-    for (let i = 0; i < churchFundValues.length; i++) {
-        totalChurchFunds += parseFloat(churchFundValues[i].value) || 0;
-    }
+    document.querySelectorAll(".church-funds-value").forEach(churchFund => {
+        totalChurchFunds += parseCurrency(churchFund.value);
+    });
 
-    // Atualizar o total da igreja na tela
-    document.getElementById("totalChurchFundsDisplay").innerHTML = `R$ ${totalChurchFunds.toFixed(2)}`;
+    document.getElementById("totalChurchFundsDisplay").innerText = `R$ ${totalChurchFunds.toFixed(2)}`;
 
-    // Recuperar Net Profit / (Loss)
-    let netProfitLossText = document.getElementById("netProfitLossDisplay").innerText;
-    let netProfitLoss = parseFloat(netProfitLossText.replace("R$", "").trim()) || 0;
+    let netProfitLoss = parseCurrency(document.getElementById("netProfitLossDisplay").innerText.replace("R$", ""));
 
-    // Calcular o saldo final
     let finalBalance = netProfitLoss - totalChurchFunds;
     let finalBalanceDisplay = document.getElementById("finalBalanceDisplay");
-    finalBalanceDisplay.innerHTML = `R$ ${finalBalance.toFixed(2)}`;
 
-    // Mudar cor dependendo se é positivo ou negativo
-    if (finalBalance < 0) {
-        finalBalanceDisplay.style.color = "red";
-    } else {
-        finalBalanceDisplay.style.color = "green";
-    }
+    finalBalanceDisplay.innerText = `R$ ${finalBalance.toFixed(2)}`;
+    finalBalanceDisplay.style.color = finalBalance < 0 ? "red" : "green";
 }
+
+// Adiciona eventos para atualizar automaticamente os cálculos quando o usuário digitar valores ou marcar checkboxes
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".fund-value, .expense-value, .church-funds-value").forEach(input => {
+        input.addEventListener("input", function () {
+            calculateTotalIncome();
+            calculateTotalExpenses();
+            calculateChurchFunds();
+        });
+    });
+
+    // Adiciona evento para os checkboxes da seção "Funds for Event"
+    document.querySelectorAll(".fund-checkbox").forEach(checkbox => {
+        checkbox.addEventListener("change", calculateTotalIncome);
+    });
+});
