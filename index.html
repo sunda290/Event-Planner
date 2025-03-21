@@ -35,27 +35,74 @@
 
         <section class="section">
             <h2>📋 Purpose of Event</h2>
-            <p>Mark ALL that apply - Add other options if needed</p>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="checkbox-group">
-                        <label><input type="checkbox"> Fundraising event - Raise funds for church improvements</label>
-                        <label><input type="checkbox"> Fundraising event - Raise funds for other events</label>
-                        <label><input type="checkbox"> Fundraising event - Support local and international missions</label>
-                        <label><input type="checkbox"> Fundraising event - Assist church members in need</label>
-                        <label><input type="checkbox"> Increase the church's visibility</label>
-                        <label><input type="checkbox"> Strengthen fellowship among church members</label>
-                        <label><input type="checkbox"> Celebrate special occasions</label>
-                        <label><input type="checkbox"> Support specific church ministries</label>
-                        <label><input type="checkbox"> Conduct charity activities</label>
-                        <label><input type="checkbox"> Encourage children and youth in church activities</label>
-                        <label><input type="checkbox"> Host cultural or sports activities</label>
-                        <label><input type="checkbox"> Host educational or spiritual events</label>
-                        <input type="text" class="form-control mt-2" placeholder="Other purpose">
-                    </div>
-                </div>
+            <p>Mark ALL that apply - Add other options in blank rows if needed</p>
+        
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="table-success">
+                        <tr>
+                            <th style="width: 70%;">Purpose</th>
+                            <th style="width: 30%;">Additional Info</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><label><input type="checkbox" class="purpose-checkbox"> Fundraising event - Raise funds for church improvements (e.g., repairs, renovations, equipment, etc.)</label></td>
+                            <td><input type="text" class="form-control purpose-info"></td>
+                        </tr>
+                        <tr>
+                            <td><label><input type="checkbox" class="purpose-checkbox"> Fundraising event - Raise funds for other event (e.g., cantina/bazaar, where funds will support a different event)</label></td>
+                            <td><input type="text" class="form-control purpose-info"></td>
+                        </tr>
+                        <tr>
+                            <td><label><input type="checkbox" class="purpose-checkbox"> Fundraising event - Support local and international missions</label></td>
+                            <td><input type="text" class="form-control purpose-info"></td>
+                        </tr>
+                        <tr>
+                            <td><label><input type="checkbox" class="purpose-checkbox"> Fundraising event - Assist church members or community members in need (e.g., financial assistance, food)</label></td>
+                            <td><input type="text" class="form-control purpose-info"></td>
+                        </tr>
+                        <tr>
+                            <td><label><input type="checkbox" class="purpose-checkbox"> Increase the church's visibility within the Portuguese-speaking community and attract new members</label></td>
+                            <td><input type="text" class="form-control purpose-info"></td>
+                        </tr>
+                        <tr>
+                            <td><label><input type="checkbox" class="purpose-checkbox"> Strengthen fellowship and engagement among church members</label></td>
+                            <td><input type="text" class="form-control purpose-info"></td>
+                        </tr>
+                        <tr>
+                            <td><label><input type="checkbox" class="purpose-checkbox"> Celebrate special occasions or Christian holidays (e.g., Easter, Christmas, Thanksgiving, Church Anniversary)</label></td>
+                            <td><input type="text" class="form-control purpose-info"></td>
+                        </tr>
+                        <tr>
+                            <td><label><input type="checkbox" class="purpose-checkbox"> Support specific church ministries (e.g., children’s ministry, worship team, youth, women)</label></td>
+                            <td><input type="text" class="form-control purpose-info"></td>
+                        </tr>
+                        <tr>
+                            <td><label><input type="checkbox" class="purpose-checkbox"> Conduct charity activities in the community (e.g., food distribution, clothing drives, supporting the homeless)</label></td>
+                            <td><input type="text" class="form-control purpose-info"></td>
+                        </tr>
+                        <tr>
+                            <td><label><input type="checkbox" class="purpose-checkbox"> Encourage children, youth and teens to engage in church activities</label></td>
+                            <td><input type="text" class="form-control purpose-info"></td>
+                        </tr>
+                        <tr>
+                            <td><label><input type="checkbox" class="purpose-checkbox"> Host cultural or sports activities to strengthen community bonds</label></td>
+                            <td><input type="text" class="form-control purpose-info"></td>
+                        </tr>
+                        <tr>
+                            <td><label><input type="checkbox" class="purpose-checkbox"> Host educational or spiritual events (e.g., lectures, workshops, Bible conferences)</label></td>
+                            <td><input type="text" class="form-control purpose-info"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" placeholder="Other purpose"></td>
+                            <td><input type="text" class="form-control purpose-info"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
+        
 
         <section class="section">
             <h2>💰 Funds for Event - <span class="text-success">Excluding JOY Financial Funds</span></h2>
@@ -282,10 +329,15 @@
                 </table>
             </div>
         </section>
+        <button class="btn btn-primary w-100 mt-3" onclick="saveFormAsPDF()">Save as PDF</button>
+
         
 
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="script.js"></script>
+
 </body>
 </html>
