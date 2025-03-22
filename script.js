@@ -298,10 +298,17 @@ function saveFormAsPDF() {
             let source = row?.querySelector("td:nth-child(2)")?.innerText || row?.querySelector("td:nth-child(2) input")?.value;
             let info = row?.querySelector(".fund-info")?.value || "";
             let amount = row?.querySelector(".fund-value")?.value || "0";
-            doc.text(`• ${source} ${info && `(${info})`} - R$ ${amount}`, 10, y);
-            y += 6;
+            let line = `• ${source} ${info ? `(${info})` : ""} - R$ ${amount}`;
+            
+            // quebra de linha automática
+            let lines = doc.splitTextToSize(line, 180);
+            lines.forEach(l => {
+                doc.text(l, 10, y);
+                y += 6;
+            });
         }
     });
+
 
     y += 8;
     addText("Total Estimated Income for Event:", document.getElementById("totalIncomeDisplay").innerText, 90);
