@@ -24,15 +24,16 @@ header {
     color: white;
     font-size: 24px;
     border-radius: 10px 10px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
-.logo {
-    float: left;
-    background: white;
-    color: #2c8f5d;
-    padding: 5px 15px;
-    border-radius: 50%;
-    font-weight: bold;
+.joy-logo {
+    height: 50px;
+    width: auto;
 }
 
 h1 {
@@ -51,6 +52,7 @@ h1 {
 h2 {
     color: #2c8f5d;
     margin-bottom: 10px;
+    font-size: 20px;
 }
 
 /* Inputs e Labels */
@@ -61,12 +63,14 @@ label {
 
 input[type="text"],
 input[type="number"],
-input[type="datetime-local"] {
+input[type="datetime-local"],
+textarea {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
     border-radius: 4px;
     border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
 /* Melhorando a exibição dos checkboxes */
@@ -92,7 +96,8 @@ th, td {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: left;
-    white-space: nowrap; /* Evita quebra de linha nos títulos */
+    white-space: nowrap;
+    vertical-align: middle;
 }
 
 th {
@@ -100,7 +105,8 @@ th {
     color: white;
 }
 
-td input[type="text"], td input[type="number"] {
+td input[type="text"],
+td input[type="number"] {
     width: 100%;
     padding: 5px;
     border: 1px solid #ccc;
@@ -111,7 +117,7 @@ td input[type="text"], td input[type="number"] {
 button {
     background: #2c8f5d;
     color: white;
-    padding: 10px;
+    padding: 12px;
     border: none;
     cursor: pointer;
     width: 100%;
@@ -126,11 +132,6 @@ button:hover {
 }
 
 /* Resumo de totais */
-h3 {
-    text-align: center;
-    color: #d32f2f;
-}
-
 .total-summary {
     text-align: right;
     font-weight: bold;
@@ -139,11 +140,16 @@ h3 {
     margin-right: 20px;
 }
 
-/* Ajuste para telas menores */
+/* RESPONSIVIDADE para telas pequenas */
 @media screen and (max-width: 768px) {
     .container {
         width: 100%;
         padding: 15px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     h1 {
@@ -154,22 +160,22 @@ h3 {
         font-size: 18px;
     }
 
-    .checkbox-group {
-        flex-direction: column;
-    }
-
     th, td {
         font-size: 14px;
         padding: 8px;
     }
 
-    button {
+    input,
+    textarea {
         font-size: 14px;
     }
-}
 
-.joy-logo {
-    height: 50px;
-    width: auto;
-}
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
 
+    .joy-logo {
+        height: 40px;
+    }
+}
